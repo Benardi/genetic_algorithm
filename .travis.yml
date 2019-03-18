@@ -1,10 +1,16 @@
-language: python
-python: 
-  - "3.5"
-# command to install dependencies
-install:
-  - pip install -r requirements.txt
+# this file is *not* meant to cover or endorse the use of travis, but rather to
+# help confirm pull requests to this project.
 
-script:
-  - nosetests tests
+language: python
+
+matrix:
+  include:
+    - python: 3.5
+      env: TOXENV=py35,pep8,docs
+           
+
+install: pip install tox
+
+script: 
+    - tox -e $TOXENV
 
